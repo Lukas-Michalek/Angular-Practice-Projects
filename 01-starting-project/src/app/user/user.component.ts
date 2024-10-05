@@ -26,7 +26,23 @@ export class UserComponent {
 
   // Event Listener for button
   onSelectUser () {
-    console.log('Clicked')
+
+
+    // console.log('Clicked')
+
+  /**
+   * const randomIndex is a locally scoped constant that is ONLY available inside of onSelectUser and that overrides the global const randomIndex, and the randomIndex is recalculated every time the function onSelectUser(when we click) is run
+   * 
+   * ! Note that Since I am referring to that selectedUser property from INSIDE THE CLASS instead of from INSIDE THE TEMPLATE as I did before I need to add 'this' to the property.
+
+   */
+    
+    const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
+    this.selectedUser = DUMMY_USERS[randomIndex]
+
+
+
+
   }
 
 }
