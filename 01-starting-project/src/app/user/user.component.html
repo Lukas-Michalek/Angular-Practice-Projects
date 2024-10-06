@@ -1,4 +1,5 @@
-<div>
+<!-- If I am using original Angular functionality  -->
+<!-- <div>
   <button (click) = "onSelectUser()" >
     <img
       [src]="imagePath"
@@ -6,6 +7,18 @@
     />
     <span>{{ selectedUser.name }}</span>
   </button>
-</div>
+</div> -->
 
 <!-- Another (not clean) way of using property binding [src]="'assets/users/' + this.selectedUser.avatar" --> 
+
+
+<!-- * If I am using Signals -->
+<div>
+  <button (click) = "onSelectUser()" >
+    <img
+      [src]="imagePath()"
+      [alt]="selectedUser().name"
+    />
+    <span>{{ selectedUser().name }}</span>
+  </button>
+</div>
