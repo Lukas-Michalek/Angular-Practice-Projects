@@ -1,12 +1,11 @@
-// * To create a signal first I need to import it from angular core
-import { Component, computed, signal } from '@angular/core';
 
-import { DUMMY_USERS } from '../dummy-users';
-import { computeMsgId } from '@angular/compiler';
+// * To be able to set the property from outside (in this case from app.component) I need to use and Input decorator -> @Input
 
-const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
+// * To be able to use this decorator first I need to import it in @angular/core'
 
-// randomIndex generates random number from 0 - DUMMY_USERS.length
+import { Component, Input } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-user',
@@ -16,96 +15,31 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
   styleUrl: './user.component.css'
 })
 
-// Using Angulars State Change Management
-// export class UserComponent {
 
-//   // * This uses zone.js part of Angular where states changes automatically
-//    selectedUser = DUMMY_USERS[randomIndex]
- 
-//   // Getter to get cleaner use of property binding
-//   get imagePath () {
-
-//     return 'assets/users/' + this.selectedUser.avatar
-
-//   }
-
-//   // Event Listener for button
-//   onSelectUser () {
-
-
-//     // console.log('Clicked')
-
-//   /**
-//    * const randomIndex is a locally scoped constant that is ONLY available inside of onSelectUser and that overrides the global const randomIndex, and the randomIndex is recalculated every time the function onSelectUser(when we click) is run
-//    * 
-//    * ! Note that Since I am referring to that selectedUser property from INSIDE THE CLASS instead of from INSIDE THE TEMPLATE as I did before I need to add 'this' to the property.
-
-//    */
-    
-//     const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
-    
-//     // * This is how can state be changed without using signal
-//     // this.selectedUser = DUMMY_USERS[randomIndex]
-
-
-
-
-
-//   }
-
-// }
-
-// export class UserComponent {
-
-//   // * This uses zone.js part of Angular where states changes automatically
-//    selectedUser = DUMMY_USERS[randomIndex]
- 
-//   // Getter to get cleaner use of property binding
-//   get imagePath () {
-
-//     return 'assets/users/' + this.selectedUser.avatar
-
-//   }
-
-//   // Event Listener for button
-//   onSelectUser () {
-
-
-//     // console.log('Clicked')
-
-//   /**
-//    * const randomIndex is a locally scoped constant that is ONLY available inside of onSelectUser and that overrides the global const randomIndex, and the randomIndex is recalculated every time the function onSelectUser(when we click) is run
-//    * 
-//    * ! Note that Since I am referring to that selectedUser property from INSIDE THE CLASS instead of from INSIDE THE TEMPLATE as I did before I need to add 'this' to the property.
-
-//    */
-    
-//     const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
-    
-//     // * This is how can state be changed without using signal
-//     // this.selectedUser = DUMMY_USERS[randomIndex]
-
-
-
-
-
-//   }
-
-// }
-
-// Using Signals
 export class UserComponent{
 
-  selectedUser = signal(DUMMY_USERS[randomIndex])
-  imagePath = computed(() => 'assets/users/' + this.selectedUser().avatar)
+  // * As Input is already imported above I can now use Input decorator @Input to be able to set the property from outside of this component(form app coponent itself as can be seen ) => This marks the property of avatar as settable from outside
 
-  onSelectUser () {
+  // * I am enabling to set avatar image
+  // ! Do not forget that Input needs to be executed as a Function!
+  
+  // * Each Input property also needs a type of value(i.e. String)
+  
+  // ? Property 'avatar' has no initializer and is not definitely assigned in the constructor. To remedy this I need to use @Input() avatar!: string; => where ! means that avatar property will definitely be set to some value even though angular can`t see that in this code just yet (user.components.ts). And in this case it will be assigned from otside, meaning app.component.html
 
-    const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
-    this.selectedUser.set(DUMMY_USERS[randomIndex]);
+  // * Adding {required: true} will make sure to show an error in IDE in case I would forgot to add value. This is a safeguard against errors. Because although @Input() avatar!: string will tell avatar property that it will be set, if I would forget to add value, the program still runs and I will get blank space but no error. This makes it a bit more difficult to spot
+  
+  @Input({required: true}) avatar!: string;
+  @Input({required: true}) name!: string;
 
+  get imagePath(){
+    return 'assets/users/' + this.avatar
   }
 
+
+  onSelectUser() {
+
+  }
 
 }
 

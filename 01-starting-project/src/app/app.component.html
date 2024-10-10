@@ -9,8 +9,27 @@
 
 <main>
   <ul id="users">
+    
+    <!-- * With @Input() added in app-user component, I am now able to set this property from outside. Note also that I am using PROPERTY BINDING ([avatar]) as I want to use a dynamic value that can change instead of just static -->
+
+    <!-- ! Do not forget that app-component has access to all the users! -> To do this import DUMMY_USERS in app.component ts file  -->
+
+    <!-- * As that data were exposed in app.component.ts and DUMMY_USERS is now stored in users (rememer each user is an object containing: id, name and avatar which then will be made available for app-user component) -->
+    
     <li>
-      <app-user />
+      <app-user [avatar]="users[0].avatar" [name]="users[0].name"/>
+    </li>
+    <li>
+      <app-user [avatar]="users[1].avatar" [name]="users[1].name"/>
+    </li>
+    <li>
+      <app-user [avatar]="users[2].avatar" [name]="users[2].name"/>
+    </li>
+    <li>
+      <app-user [avatar]="users[3].avatar" [name]="users[3].name"/>
+    </li>
+    <li>
+      <app-user [avatar]="users[4].avatar" [name]="users[4].name"/>
     </li>
   </ul>
 </main>
