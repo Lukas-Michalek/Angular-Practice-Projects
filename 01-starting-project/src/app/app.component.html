@@ -10,11 +10,14 @@
 <main>
   <ul id="users">
     
-    <!-- * With @Input() added in app-user component, I am now able to set this property from outside. Note also that I am using PROPERTY BINDING ([avatar]) as I want to use a dynamic value that can change instead of just static -->
+    <!--  With @Input() added in app-user component, I am now able to set this property from outside. Note also that I am using PROPERTY BINDING ([avatar]) as I want to use a dynamic value that can change instead of just static -->
 
     <!-- ! Do not forget that app-component has access to all the users! -> To do this import DUMMY_USERS in app.component ts file  -->
 
-    <!-- * As that data were exposed in app.component.ts and DUMMY_USERS is now stored in users (rememer each user is an object containing: id, name and avatar which then will be made available for app-user component) -->
+    <!-- * As that data were exposed in app.component.ts and DUMMY_USERS is now stored in users (remmember each user is an object containing: id, name and avatar which then will be made available for app-user component) -->
+
+    <!-- ! Note that when using Signals as Input this bit of code does not have to be changed and work well with Signals and the old way! -->
+     <!-- ! Signals as input works well with Property and Data Binding -->
     
     <li>
       <app-user [avatar]="users[0].avatar" [name]="users[0].name"/>

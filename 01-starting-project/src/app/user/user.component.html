@@ -1,35 +1,11 @@
-<!-- If I am using original Angular functionality  -->
-<!-- <div>
-  <button (click) = "onSelectUser()" >
-    <img
-      [src]="imagePath"
-      [alt]="selectedUser.name"
-    />
-    <span>{{ selectedUser.name }}</span>
-  </button>
-</div> -->
+<!-- As I am now using signals as inputs I must also execute "name" and "imagePath" as a funtion  -->
 
-<!-- Another (not clean) way of using property binding [src]="'assets/users/' + this.selectedUser.avatar" --> 
-
-
-<!-- * If I am using Signals -->
-<!-- <div>
-  <button (click) = "onSelectUser()" >
-    <img
-      [src]="imagePath()"
-      [alt]="selectedUser().name"
-    />
-    <span>{{ selectedUser().name }}</span>
-  </button>
-</div> -->
-
-<!-- * Not using signals -->
 <div>
   <button (click) = "onSelectUser()" >
     <img
-      [src]="imagePath"
-      [alt]="name"
+      [src]="imagePath()"
+      [alt]="name()"
     />
-    <span>{{ name }}</span>
+    <span>{{ name() }}</span>
   </button>
 </div>
