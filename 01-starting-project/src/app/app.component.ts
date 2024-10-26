@@ -16,9 +16,18 @@ import { DUMMY_USERS } from './dummy-users';
 
 export class AppComponent {
 
-  // * To get acces to data from DUMMY_USERS I can add a property so I can get access to that from template "templateUrl: './app.component.html'"
-
-  // * This is how to expose DUMMY_USERS data in the template of this component "./app.component.html'"
   users = DUMMY_USERS;
+
+
+
+  // Remember that user.component is a button with id, name, alt, src properties that does something when it is clicked.
+  // * By clicking on user.component button (under app-user selector) I am emitting the id of the user through "select" to its parent component that is app.component (under app-root selector)
+  // this id is used as a paramater in onSelectUser function. It is important to add parameter type as well
+
+  onSelectUser(id: string){
+
+    console.log("The id of this user is " + id)
+
+  }
 
 }

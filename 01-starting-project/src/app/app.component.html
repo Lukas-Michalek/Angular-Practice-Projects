@@ -1,38 +1,62 @@
-<!-- <header>
-  <img src="assets/angular-logo.png" alt="The Angular logo: The letter 'A'" />
-  <h1>Let's get started!</h1>
-  <p>Time to learn all about Angular!</p>
-</header> -->
-
-
 <app-header />
 
 <main>
   <ul id="users">
+    <!-- I need to  -->
+
+    <li>
+      <app-user
+        [id]="users[0].id"
+        [avatar]="users[0].avatar"
+        [name]="users[0].name"   
+        (select) = "onSelectUser($event)"     
+      />
+      
+      <!-- With the @Output() select added, I can now use event binding on my custom component for this select event because I ultimately created my own custom event called select.-->
+      
+      <!--* Remember that through the EventEmitter() object, I am able to emit everything that is stored in select (in this case, it is id) to the parent component (the parent component of app-user [user.component] is app-root [app.component], and thus I am able to pass the content of id there.) -->
+      
+      <!-- As I want to create another component (for example, a new table), this component will be created by app.component not user.component! For that reason I need to get some information that is being held in user.component to the app.component (remember app-root is just selector). After the user clicks the user.component, he will then pass the content of id through select to app.component.ts where a function onSelectUser will be called. -->
+
+    <!--* To get the hold of emitted value that is stored in select I need to use a special variable provided by Angular => $event-->
+
+    <!-- $event variable can be also used on built-in events (like "click") to get hold of potentially emitted values-->
+
+    <!--* $event variable holds data, the value that was emitted by the event I am listening to. And with this I am able to handle the event-->
     
-    <!--  With @Input() added in app-user component, I am now able to set this property from outside. Note also that I am using PROPERTY BINDING ([avatar]) as I want to use a dynamic value that can change instead of just static -->
-
-    <!-- ! Do not forget that app-component has access to all the users! -> To do this import DUMMY_USERS in app.component ts file  -->
-
-    <!-- * As that data were exposed in app.component.ts and DUMMY_USERS is now stored in users (remmember each user is an object containing: id, name and avatar which then will be made available for app-user component) -->
-
-    <!-- ! Note that when using Signals as Input this bit of code does not have to be changed and work well with Signals and the old way! -->
-     <!-- ! Signals as input works well with Property and Data Binding -->
     
-    <li>
-      <app-user [avatar]="users[0].avatar" [name]="users[0].name"/>
     </li>
     <li>
-      <app-user [avatar]="users[1].avatar" [name]="users[1].name"/>
+      <app-user
+        [id]="users[1].id"
+        [avatar]="users[1].avatar"
+        [name]="users[1].name"
+        (select) = "onSelectUser($event)"
+      />
     </li>
     <li>
-      <app-user [avatar]="users[2].avatar" [name]="users[2].name"/>
+      <app-user
+        [id]="users[2].id"
+        [avatar]="users[2].avatar"
+        [name]="users[2].name"
+        (select) = "onSelectUser($event)"
+      />
     </li>
     <li>
-      <app-user [avatar]="users[3].avatar" [name]="users[3].name"/>
+      <app-user
+        [id]="users[3].id"
+        [avatar]="users[3].avatar"
+        [name]="users[3].name"
+        (select) = "onSelectUser($event)"
+      />
     </li>
     <li>
-      <app-user [avatar]="users[4].avatar" [name]="users[4].name"/>
+      <app-user
+        [id]="users[4].id"
+        [avatar]="users[4].avatar"
+        [name]="users[4].name"
+        (select) = "onSelectUser($event)"
+      />
     </li>
   </ul>
 </main>
