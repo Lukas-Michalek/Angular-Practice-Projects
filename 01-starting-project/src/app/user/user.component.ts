@@ -1,8 +1,11 @@
 
 
-// First I need to import the Output decorator and EventEmitter object from angular/core
+//- First I need to import the Output decorator and EventEmitter object from angular/core
 
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+// There is a more modern alternative on how to output / emit data not using @Output (output decorator) but instead using:
+// * output function imported from @angular/core
+
+import { Component, Input, output, EventEmitter } from '@angular/core';
 
 
 
@@ -33,7 +36,15 @@ export class UserComponent{
 
   // * EventEmitter object will allow me to emit custom values through the select property to any parent component that is interested. In this case it is onSelectUser, which is the function that is trigger when we clicked the button 
   
-  @Output() select = new EventEmitter();
+  // @Output() select = new EventEmitter();
+
+  // * the more modern method is using output function. Everything works in the same way, the only difference is that EventEmitter() object is created 'under the hood' (and thus I don`t have to create it on my own) and the code takes less space.
+  
+  // * It is also important to understand that this output() function does not create any kind of signal at all, and select is still and event emitter and not the signal! Unlike the input function which did create input signal. output() just give me a custom event that I can emit!
+
+
+  // Also do not forget to specify the data type I will be emitting
+  select = output<string>();
 
 
   get imagePath(){
