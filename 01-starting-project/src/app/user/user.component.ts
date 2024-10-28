@@ -5,7 +5,7 @@
 // There is a more modern alternative on how to output / emit data not using @Output (output decorator) but instead using:
 // * output function imported from @angular/core
 
-import { Component, Input, output, EventEmitter } from '@angular/core';
+import { Component, Input, output, EventEmitter, Output } from '@angular/core';
 
 
 
@@ -36,7 +36,17 @@ export class UserComponent{
 
   // * EventEmitter object will allow me to emit custom values through the select property to any parent component that is interested. In this case it is onSelectUser, which is the function that is trigger when we clicked the button 
   
-  // @Output() select = new EventEmitter();
+  // **************************************************************************
+  // **************************************************************************
+
+  @Output() select = new EventEmitter<string>();
+
+  // * If I want to add extra layer of security, I can specify the Generic Type Assignment ... meaning that I know I want output to be STRING (as required from onSelectUser(id: string) in app.component) I will use <string> notation and in this case if the value will be anything else than string I will get an instant error
+
+
+  // **************************************************************************
+  // **************************************************************************
+
 
   // * the more modern method is using output function. Everything works in the same way, the only difference is that EventEmitter() object is created 'under the hood' (and thus I don`t have to create it on my own) and the code takes less space.
   
@@ -44,7 +54,7 @@ export class UserComponent{
 
 
   // Also do not forget to specify the data type I will be emitting
-  select = output<string>();
+  // select = output<string>();
 
 
   get imagePath(){
