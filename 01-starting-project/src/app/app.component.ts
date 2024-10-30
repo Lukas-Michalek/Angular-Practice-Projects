@@ -55,20 +55,36 @@ export class AppComponent {
   }
 
  
-  // ! Very important is to use '!' => Angular thinks that there is a chance that no user would be found and therefore I will get and return 'undefined' value. By using '!' I am convincing Angular that I will always get value and therefore this will not happen
+  //***************     LESSON START      ***************/
+
+  // ! Very important is to use '!' => Angular thinks that there is a chance that no user would be found and therefore I will get and return 'undefined' value. By using '!' I am convincing Angular that I will always get value and never 'undefined' and therefore this will not happen
   
+  // * '!' Acts as a safeguard! If the user would not be found, this would cause a problem because I would be then trying to access a name property on 'undefined' value in app.component.html, [userName]="selectedUser.name"  ==>  [userName]="undefined.name" which would crash an application
+
+  // The error would be ===> Object is possibly 'undefined'.ngtsc(2532)  => RUNTIME ERROR
+
+  //! In other words -> '!' Rules out the possibility that I will ever get an 'undefined' value in adeuate property
+
+  // Now by using ! I am not rulling out that there could be an undefined value, I am just convincing Angular that I as developer know that I won`t have undefined value in such a place
+
+  //H => JUMP TO USER user.components.ts
+
+
+
+
   get selectedUser(){
    
     return DUMMY_USERS.find(user => user.id === this.selectedUserID)!
   }
 
-  
-  
-  // * 
-  
-
-  
-
-
-
 }
+
+  //***************     LESSON CONTINUE 3      ***************/
+
+  // There might by a chance that I will not find a user in DUMMY_USERS. 
+  // For example by setting users = DUMMY_USERS.slice(1,2)
+  // In this case if user id would be lets say 'u4' I would get an 'undefined' value and although I have said Angular that I WILL ALWAYS get proper defined value by using '!' this would not be true.
+
+  // * Instead, in situations where I am not 100% sure that I will have a defined value, it is often better to use "FALLBACK CODE"
+
+  //H Continue to tasks.component.ts
