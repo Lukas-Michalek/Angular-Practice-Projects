@@ -1,7 +1,31 @@
 
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
+  //***** Lesson Start *****//
 
+  // I can create ALIAS by using 'type' keyword which is a keyword made available by TypeScript
+  
+  // * The convention is to starta Alias with upper case
+
+  // type User = {
+  //   id: string;
+  //   avatar: string;
+  //   name: string;
+  // }; 
+
+  // now I can use this alias in every space this is expected
+
+  // * Another way is to create an INTERFACE, which is another TypeScript feature 
+
+  // An Interface is simply another way of defining object type
+
+  interface User {
+    id: string;
+    avatar: string;
+    name: string;
+  }; 
+
+  //* The difference between type and interface is that with interface I am only able to define Object type, where with type I can also define other types
 
 @Component({
   selector: 'app-user',
@@ -16,18 +40,13 @@ export class UserComponent{
 
 
 
+  // @Input({required: true}) user!: {
+  //   id: string;
+  //   avatar: string;
+  //   name: string;
+  // }; 
 
-  // @Input({required: true}) id!: string;
-  // @Input({required: true}) avatar!: string;
-  // @Input({required: true}) name!: string;
-
-  // * I can simplify this code so that instead of accpeting 3 properties, I will accpet just one proeprty => The entire user object
-
-  @Input({required: true}) user!: {
-    id: string;
-    avatar: string;
-    name: string;
-  }; 
+  @Input({required: true}) user!: User; 
 
   // Remember! By using 'user!' I am convincing TypeScript that value will be defined! And by adding {required: true} will make sure to show an error in IDE in case I would forgot to add value and therefore there will be undefined at the end. This is a safeguard against errors. 
 
