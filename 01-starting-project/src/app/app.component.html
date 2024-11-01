@@ -1,30 +1,7 @@
 <app-header />
 
 <main>
-  <!-- <ul id="users"> -->
-
-    <!--*******      LESSON START     <!--*******-->
-
-
-    <!-- Staticly Rendering List -->
-    <!-- <li>
-      <app-user [user]="users[0]" (select)="onSelectUser($event)" />
-    </li>
-    <li>
-      <app-user [user]="users[1]" (select)="onSelectUser($event)" />
-    </li>
-    <li>
-      <app-user [user]="users[2]" (select)="onSelectUser($event)" />
-    </li>
-    <li>
-      <app-user [user]="users[3]" (select)="onSelectUser($event)" />
-    </li>
-    <li>
-      <app-user [user]="users[4]" (select)="onSelectUser($event)" />
-    </li> -->
-  <!-- </ul> -->
-
-      
+  
   <!-- Dynamicaly Rendering lists -->
 
   <ul id="users">
@@ -48,5 +25,22 @@
 
   </ul>
 
-  <app-tasks [userName]="selectedUser.name" />
+  <!--*****     Lesson Continues 1     ***** -->
+
+  <!-- There migt be a case when I do not always want to render and element ==> Coniditional Rendering ==> Otherwise it would be always rendered, and it would not just contain any content. And thats where @if comes in-->
+
+  <!--* If selected user is defined(exists) -->
+
+  @if (selectedUser)  {
+    
+    <!-- <app-tasks [userName]="selectedUser ? selectedUser.name : ''" /> -->
+
+    <app-tasks [userName]="selectedUser.name" />
+    
+  } @else {
+
+    <p>Select User!</p>
+
+  }
+
 </main>

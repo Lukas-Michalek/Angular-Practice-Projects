@@ -19,7 +19,20 @@ export class AppComponent {
 
   users = DUMMY_USERS;
 
-  selectedUserID = 'u1';
+  //*****     Lesson Start     *****/
+  
+  // selectedUserID = 'u1';
+
+  // If there will be an element that will be rendered only under certain circumstances I can declare variable without initial value, in which case I need to declare the Type of Value it will hold together with '?' to tell the TypeScript that it is find that it might not be set!
+
+  //! Error => Property 'selectedUserID' has no initializer and is not definitely assigned in the constructor.ts(2564) => means that I did not tell TypeScript that:
+  // 1. '?' It is fine if it won`t be set
+  // 2. '!' I will definitely set it!
+
+  selectedUserID?: string;
+
+  //H Continue to app.component.html
+
 
   
   onSelectUser(id: string){
