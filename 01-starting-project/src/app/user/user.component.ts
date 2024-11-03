@@ -1,7 +1,11 @@
 
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
-  //***** Lesson Start *****//
+
+//* Now I need to import the user model. It is a good practice to make it clearer to include type as well
+import { type User} from "./user.model";
+
+
 
   // I can create ALIAS by using 'type' keyword which is a keyword made available by TypeScript
   
@@ -19,13 +23,15 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 
   // An Interface is simply another way of defining object type
 
-  interface User {
-    id: string;
-    avatar: string;
-    name: string;
-  }; 
+  // interface User {
+  //   id: string;
+  //   avatar: string;
+  //   name: string;
+  // }; 
 
   //* The difference between type and interface is that with interface I am only able to define Object type, where with type I can also define other types
+
+  // It is a good practice to 'outsource' data models (such as user or task) to different files with naming convention user.model.ts for example and then import them to files that are needed. So for user that would be file in user folder with the name user.model.ts
 
 @Component({
   selector: 'app-user',
@@ -39,12 +45,6 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 export class UserComponent{
 
 
-
-  // @Input({required: true}) user!: {
-  //   id: string;
-  //   avatar: string;
-  //   name: string;
-  // }; 
 
   @Input({required: true}) user!: User; 
 
