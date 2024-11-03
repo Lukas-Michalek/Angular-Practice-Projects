@@ -13,7 +13,7 @@
        <!-- Go through selectedUserTask array that I got from filter method in tasks.component.ts and therefore use only filtered subarray of tasks, containing only tasks based on userID-->
        @for (task of selectedUserTask; track task.id){ 
            <li>
-               <app-task />
+               <app-task [task]="task"/>
            </li>
 
        }
