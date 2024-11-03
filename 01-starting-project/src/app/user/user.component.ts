@@ -51,6 +51,13 @@ export class UserComponent{
   // Remember! By using 'user!' I am convincing TypeScript that value will be defined! And by adding {required: true} will make sure to show an error in IDE in case I would forgot to add value and therefore there will be undefined at the end. This is a safeguard against errors. 
 
 
+  @Input ({required: true}) selected!: boolean;
+  //* required: true  ===> I am telling Angular that IT MUST BE SET!(and if for some reason it is not set give me an Error)
+  
+  //* selected!       ===> I am telling Angular that IT WILL BE SET
+  // selected!: boolean => 
+
+
 
   @Output() select = new EventEmitter<string>();
 

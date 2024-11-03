@@ -1,7 +1,12 @@
-<!-- As I am now using signals as inputs I must also execute "name" and "imagePath" as a funtion  -->
+
+<!--****   Adding Class Conditionally to an Element   ****-->
+
+<!-- In order tp add class conditionally to element I need to use a special property binding syntax -->
+ <!-- * Instead of binding a class proeprty as a whole, I bind 'class.name_of_the_class' and then I set it to TRUE or FALSE, which determines whether this class will be added. -->
+<!-- In this case it is 'selected' property, which value is being passed from app.component.html -->
 
 <div>
-  <button (click) = "userClicked()" >
+  <button [class.active]="selected" (click) = "userClicked()" >
     <img
       [src]="imagePath"
       [alt]="user.name"

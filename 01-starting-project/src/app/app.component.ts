@@ -30,11 +30,7 @@ export class AppComponent {
   // 2. '!' I will definitely set it!
 
   selectedUserID?: string;
-
-  //H Continue to app.component.html
-
-
-  
+ 
   onSelectUser(id: string){
     
        

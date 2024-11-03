@@ -13,11 +13,15 @@
     <!--* As we are dynamically outputing list data here and Angular internally wants to keep the track of every item that is being rendered, so that if the list input data would change (id we would shuffle the list items around or remove some items) Angular could easily reuse all already rendered list items and does not have to recreate the whole list every time the list data changes  -->
     <!-- * With this track expression we are teling Angular which unique identification criteria can be assigned by angular automatically behind the scenes to every list item ===> In this case user.id is unique identifier-->
      <!-- Angula basically connect the user.id to every list item <li> it outputs, so that every list item has different ID, and that then helps the Angular update the list if the data would change -->
+
+    <!--* Note that 'selected' property is of the type Boolean and thus can be either TRUE or FALSE. In order to determine the state, as I am looping through the list of users, if currently selected user.id and selectedUser.id are same -->
+    <!--! Do not forget that selectedUser object is being passed from getter of this componenet ===> app.component and user object is currently the one that is being looped (@for) so we have access to both of them-->
+    <!--* I am passing the value of TRUE to the user.component  -->
     
     @for ( user of users; track user.id) {
 
       <li>
-        <app-user [user]="user" (select)="onSelectUser($event)" />
+        <app-user [user]="user" [selected]="user.id === selectedUserID" (select)="onSelectUser($event)" />
       </li>
 
     }
