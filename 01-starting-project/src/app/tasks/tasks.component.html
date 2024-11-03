@@ -7,15 +7,16 @@
     </header>
 
     <ul>
-        <li>
-            <app-task />
-        </li>
-        <li>
-            <app-task />
-        </li>
-        <li>
-            <app-task />
-        </li>
+        <!-- Go through all the tasks in tasks.componenet.ts -->
+       <!-- @for (task of tasks; track task.id) -->
+       
+       <!-- Go through selectedUserTask array that I got from filter method in tasks.component.ts and therefore use only filtered subarray of tasks, containing only tasks based on userID-->
+       @for (task of selectedUserTask; track task.id){ 
+           <li>
+               <app-task />
+           </li>
+
+       }
     </ul>
 </section>
 
