@@ -1,8 +1,14 @@
+
+<!--*****     INTRODUCIG DELETE TASK OPTION     ***** -->
+
+<!-- To be able to delete the task / complete I need to add click event listener to button to find out whether the button was clicked or not and then to comminucate the information that the button was clicked to the tasks component which is where we are managing all the tasks -->
+ <!--H Continue to Tasks Component  -->
+
 <article>
     <h2>{{ task.title }}</h2>
     <time>{{ task.dueDate}}</time>
-    <p>{{ task.summary }}</p>
+    <p>{{ task.summary  }}</p>
     <p class="actions">
-        <button>Complete</button>
+        <button (click)="onCompleteTask()">Complete</button>
     </p>
 </article>

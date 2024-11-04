@@ -6,18 +6,19 @@
         </menu>
     </header>
 
-    <ul>
-        <!-- Go through all the tasks in tasks.componenet.ts -->
-       <!-- @for (task of tasks; track task.id) -->
-       
-       <!-- Go through selectedUserTask array that I got from filter method in tasks.component.ts and therefore use only filtered subarray of tasks, containing only tasks based on userID-->
+    <ul> 
+
+        
+       <!--* I am listening for any event in (complete) which then can trigger any methd   -->
        @for (task of selectedUserTask; track task.id){ 
            <li>
-               <app-task [task]="task"/>
+               <app-task (complete)="onCompleteTask($event)" [task]="task"/>
            </li>
 
-       }
-    </ul>
+           <!--* ($event) is a special variable that`s made available by Angular that gives me access to the event data that was emitted -->
+
+       } 
+    </ul> 
 </section>
 
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TaskComponent } from "./task/task.component";
 
 
@@ -13,6 +13,9 @@ export class TasksComponent {
 
   @Input({required: true}) userName!: string;
   @Input({ required: true}) userId!: string;
+
+
+
 
   //* In order to output data for each user task, I will create an array that will hold all the information
 
@@ -59,6 +62,24 @@ export class TasksComponent {
   
   get selectedUserTask() {
     return this.tasks.filter((task) => task.userId === this.userId);
+  }
+
+
+  
+  
+  // 1.   tasks.componenet is listening <app-task (complete)="onCompleteTask($event)" [task]="task"/> 
+  
+  //* 2.  when button <button (click)="onCompleteTask()">Complete</button> is clicked onCompleteTask() [in task.component] is triggered, 
+  
+  //3.    (complete) emitter then emits value of that task id ===> this.complete.emit(this.task.id) 
+  
+  //*4.   and the value of id thanks to $event variable is then sent here to onCompleteTask(id: string) through (complete)="onCompleteTask($event)"
+  
+  //5   onCompleteTask(id: string) then triggers a function where there is created a new subarray (filtered) with the same name as the original array tasks will be replaced with a new array tasks but without the task id I have clicked, and so new tasks array is being rendered but without the task with the id making it disappear    
+  onCompleteTask(id: string){
+    
+    this.tasks = this.tasks.filter((task) => task.id !== id);
+
   }
 
 }
