@@ -1,22 +1,31 @@
 <section id="tasks">
     <header>
-        <h2>{{ userName }}'s Tasks</h2>
+        
         <menu>
-            <button>Add Task</button>
-        </menu>
-    </header>
+            <h2>{{ userName }}'s Tasks</h2>
 
-    <ul> 
+            <!-- <button >Add Task</button> -->
+            <!-- If user clicks button render new-task element -->
+
+            
+        </menu>
+        
+        <app-new-task [userId]="userId" (addTask)="newTaskAdded($event)"/>
+
+        @if (addNewTask){
+            <app-new-task-content />
+        }
 
         
-       <!--* I am listening for any event in (complete) which then can trigger any methd   -->
+    </header>
+
+
+
+    <ul> 
        @for (task of selectedUserTask; track task.id){ 
            <li>
                <app-task (complete)="onCompleteTask($event)" [task]="task"/>
            </li>
-
-           <!--* ($event) is a special variable that`s made available by Angular that gives me access to the event data that was emitted -->
-
        } 
     </ul> 
 </section>
