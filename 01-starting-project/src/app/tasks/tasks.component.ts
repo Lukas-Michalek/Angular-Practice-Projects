@@ -1,13 +1,13 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input,} from '@angular/core';
 import { TaskComponent } from "./task/task.component";
-import { NewTaskComponent } from "./new-task/new-task.component";
-import { NewTaskContentComponent } from "./new-task-content/new-task-content.component";
+
+import { NewTaskComponent } from './new-task/new-task.component';
 
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [TaskComponent, NewTaskComponent, NewTaskContentComponent],
+  imports: [TaskComponent, NewTaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
@@ -16,7 +16,20 @@ export class TasksComponent {
   @Input({required: true}) userName!: string;
   @Input({ required: true}) userId!: string;
 
+  // We also need an extra proeprty which controls whether this new-task component is visible or not
+  
+  // * By setting the property tio 'false' Angular knows that it will be of the type boolean so I do not have to (and should not!) add the value type.
+  
+  // ! Do not do => isAddingTask: boolean = false; as it is not recommended if the inferred type is the correct type
 
+  // isAddingTask is set to false initially but will be changed in onStartAddTask() function
+
+  isAddingTask = false;
+
+  
+
+
+ 
   tasks = [
     {
       id: 't1',
@@ -42,11 +55,6 @@ export class TasksComponent {
   ]
 
 
-  addNewTask?: string;
-
-
-
-
 
   get selectedUserTask() {
     console.log(this.userId)
@@ -63,9 +71,16 @@ export class TasksComponent {
 
   }
 
-  newTaskAdded(id: string){
-    console.log(`ID sent after clicking on Add Task is ` + id)
-    this.addNewTask = id;
+
+  //* When the button is clicked (we start the process by conditionally showing a component that will allow as to enter the task details) add task - [Name is describing the action very well] 
+  onStartAddTask (){
+
+    this.isAddingTask = true;
   }
+
+  //H -> Jump to tasks.component.html
+
+
+
 
 }

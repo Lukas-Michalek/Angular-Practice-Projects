@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-new-task',
@@ -9,16 +9,4 @@ import { Component, EventEmitter, Output, Input } from '@angular/core';
 })
 export class NewTaskComponent {
 
-  @Input({required: true}) userId!: string;
-
-  @Output() addTask = new EventEmitter<string>();
- 
-  addNewTaskClicked() {
-
-    this.addTask.emit(this.userId);
-    
-  }
-
-  }
-
-
+}
