@@ -26,10 +26,6 @@ export class TasksComponent {
 
   isAddingTask = false;
 
-  
-
-
- 
   tasks = [
     {
       id: 't1',
@@ -78,7 +74,16 @@ export class TasksComponent {
     this.isAddingTask = true;
   }
 
-  //H -> Jump to tasks.component.html
+
+  // To make the dialog in new-task.html closable, I need to add new method onCancelAddTask which will set isAddingTask to false, which in turn will then remove new-task component from DOM as the condition will not be met.
+  //! Remember Angular keeps checking for any change of state and if that occur Re-Renders everything if SIGNALS are not being used 
+
+  //H -> Jump to new-task.component.html responsible for rendering new-task
+
+  onCancelAddTask(){
+    this.isAddingTask = false;
+  }
+
 
 
 

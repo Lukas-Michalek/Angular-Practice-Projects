@@ -1,7 +1,9 @@
 <!-- I want to use the newly added property isAddingTask to conditionaly show the new-task component -->
 
+<!-- * isAddingTask is listening for an event, when this event triggers and although no data is passed, the function  onCancelAddTask() will turn isAddingTask to FALSE, condition is therefore no longer being met and DOM removes the component <app-new-task> -->
+
 @if(isAddingTask){
-    <app-new-task />
+    <app-new-task (cancel)=" onCancelAddTask()"/>
 }
 
 
