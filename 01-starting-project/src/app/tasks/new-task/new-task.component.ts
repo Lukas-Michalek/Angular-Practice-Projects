@@ -21,16 +21,16 @@ export class NewTaskComponent {
 
   // I also do not need @Input or @Output as these properties will be used only inside this component (new-task.component.ts)
  
-  // enteredTitle = '';
-  // enteredSummary = '';
-  // enteredDate = '';
+  enteredTitle = '';
+  enteredSummary = '';
+  enteredDate = '';
 
 
   // ********  ==> If I want to use signals instead, the only thing that needs to change is the way I declare the variables. Everything else remains the exactly same! 
 
-  enteredTitle = signal('');
-  enteredSummary = signal('');
-  enteredDate = signal('');
+  // enteredTitle = signal('');
+  // enteredSummary = signal('');
+  // enteredDate = signal('');
 
 
 
@@ -40,6 +40,10 @@ export class NewTaskComponent {
 
     this.cancel.emit();
 
+  }
+
+  onSubmit () {
+    console.log('Form Submitted!') 
   }
 
 

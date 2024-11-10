@@ -12,7 +12,13 @@
 <dialog open>
    <h2>Add Task</h2>
      
-   <form>
+   <form (ngSubmit)="onSubmit()">
+    
+    <!-- * Thanks to FormsModule all form handling is being done for me and the default behaviour of submit (sending data back to the server it orginited from) is a bad behaviour, as for example in this case it would be sent to the server where I have idnex.html and thus I want to prevent it! -->
+
+   <!-- Instead thanks to FormsModule I can simply specify what I want to do when form is submitted -->
+
+   <!-- ************************************************************************* -->
    
     <!-- To make sure that with every keystroke the user makes in input field adequate properties stored in new-task.ts (enteredTitle, enteredSummary, enteredDate) and their values will be updated with the values entered by user  -->
 
