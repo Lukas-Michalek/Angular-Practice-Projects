@@ -2,8 +2,9 @@
 
 <!-- * isAddingTask is listening for an event, when this event triggers and although no data is passed, the function  onCancelAddTask() will turn isAddingTask to FALSE, condition is therefore no longer being met and DOM removes the component <app-new-task> -->
 
+<!-- In order to add new task I need to listen to do (add) event that I created in new-task.component.ts, that will trigger onAddTask method in tasks.component.ts -->
 @if(isAddingTask){
-    <app-new-task (cancel)=" onCancelAddTask()"/>
+    <app-new-task (cancel)=" onCancelAddTask()" (add)="onAddTask($event)"/>
 }
 
 

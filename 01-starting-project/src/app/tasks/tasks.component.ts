@@ -2,6 +2,7 @@ import { Component, Input,} from '@angular/core';
 import { TaskComponent } from "./task/task.component";
 
 import { NewTaskComponent } from './new-task/new-task.component';
+import { type NewTaskData } from './task/task.model';
 
 
 @Component({
@@ -84,6 +85,29 @@ export class TasksComponent {
     this.isAddingTask = false;
   }
 
+
+  // tasks.component.html is listening for an event (add). After this event is triggered onAddTask(taskData: {}) is called. 
+  //* Because I am passing data (add is emiting the data in the form of object that were captured in new-task.component.ts) I will also need to specify that as a paramater.
+
+  // taskData we receive in this method are of the shape NewTaskData specified in task.model.ts so I cna use this data type
+  
+  //* Remember that task that will be added to tasks array needs to have the same shape
+  onAddTask(taskData: NewTaskData){
+
+    this.tasks.push({
+      
+      id: new Date().getTime().toString(),  // I need to create new id for each task
+      userId: this.userId,                  // As the task is added to the current user user id is from this user
+      title: taskData.title,
+      summary: taskData.summary,
+      
+      dueDate: taskData.date,
+    })
+
+    this.isAddingTask = false;
+
+
+  }
 
 
 
