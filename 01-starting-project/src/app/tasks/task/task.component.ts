@@ -3,6 +3,10 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 import { type Task } from './task.model'
 
+import { CardComponent } from '../../shared/card/card.component'
+
+// To be able to use the PIPES I need to import the exact pipe
+import { DatePipe } from '@angular/common';
 
 // interface Task {
 
@@ -19,7 +23,7 @@ import { type Task } from './task.model'
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [],
+  imports: [CardComponent, DatePipe],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css'
 })
