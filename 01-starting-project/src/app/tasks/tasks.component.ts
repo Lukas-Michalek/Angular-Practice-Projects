@@ -4,6 +4,7 @@ import { TaskComponent } from "./task/task.component";
 import { NewTaskComponent } from './new-task/new-task.component';
 import { type NewTaskData } from './task/task.model';
 
+import { TasksService } from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -17,9 +18,9 @@ export class TasksComponent {
   @Input({required: true}) userName!: string;
   @Input({ required: true}) userId!: string;
 
-  // We also need an extra proeprty which controls whether this new-task component is visible or not
+  // We also need an extra property which controls whether this new-task component is visible or not
   
-  // * By setting the property tio 'false' Angular knows that it will be of the type boolean so I do not have to (and should not!) add the value type.
+  // * By setting the property to 'false' Angular knows that it will be of the type boolean so I do not have to (and should not!) add the value type.
   
   // ! Do not do => isAddingTask: boolean = false; as it is not recommended if the inferred type is the correct type
 
@@ -27,44 +28,83 @@ export class TasksComponent {
 
   isAddingTask = false;
 
-  tasks = [
-    {
-      id: 't1',
-      userId: 'u1',
-      title: 'Master Angular',
-      summary: 'Learn all the features of Angular and how to apply them.',
-      dueDate: '2025-12-21',
-    },
-    {
-      id: 't2',
-      userId: 'u3',
-      title: 'Build First Prototype',
-      summary: 'Build a first prototype of online shop website',
-      dueDate: '2024-12-21',
-    },
-    {
-      id: 't3',
-      userId: 'u3',
-      title: 'Prepare Issue Template',
-      summary: 'Prepare the issue templapte that will help outline project issues.',
-      dueDate: '2026-11-11',
-    }
-  ]
+  
+  // H *****     Services     ***** //
+  // When working with Angular it is considered a good practice to keep the Components and their classes as lean as possible, and managing the data which are being used by multiple components (for example NewTaskComponent adds a task, Task component deletes the task). In situations like this it is recommended that I should use a service for managing this data.
 
 
+  // ! As I am not using services, tasks array is managed from there
+  // tasks = [
+  //   {
+  //     id: 't1',
+  //     userId: 'u1',
+  //     title: 'Master Angular',
+  //     summary: 'Learn all the features of Angular and how to apply them.',
+  //     dueDate: '2025-12-21',
+  //   },
+  //   {
+  //     id: 't2',
+  //     userId: 'u3',
+  //     title: 'Build First Prototype',
+  //     summary: 'Build a first prototype of online shop website',
+  //     dueDate: '2024-12-21',
+  //   },
+  //   {
+  //     id: 't3',
+  //     userId: 'u3',
+  //     title: 'Prepare Issue Template',
+  //     summary: 'Prepare the issue templapte that will help outline project issues.',
+  //     dueDate: '2026-11-11',
+  //   }
+  // ]
 
-  get selectedUserTask() {
-    console.log(this.userId)
-    
-    return this.tasks.filter((task) => task.userId === this.userId);
+
+// As TasksService is a class and therefore Blueprint for an object, in order to interact with it and use in methods below, I need to instantiate this service first
+
+
+// H *****     Dependency Injection     ***** //
+// Dependency Injection is a mechanism that is being used in conjunction with services.
+// The idea is that I do not create this instance (private taskService = new TasksService())on my own, but instead I tell Angular that I need such an instance and I let Angular create it. And therefore Angular can create this instance once, and I can then use this one instance in different components, and therefore I would be operating on the same data.
+
+// * To tell Angular that I need such an instance I will use Constructor function to this class, which is a special method that can be added to any class in JavaScript, that will be automatically excecuted when this class (class TasksComponent) is instantiated, which will happen when this component is used in some template
+
+// So this constructor will be executed automatically, and it will be Angular that executes it in the end, because it will be Angular that instantiates this component
+
+// Private => Meant to be used only within this component
+
+// * To tell the Angular about the dependency I need, I would simply add that dependency to the constructor
+
+// ! Dependency Injection => I tell Angular which type of value I need and Angular creates it and provides it as an argument 
+
+//* In other words => I specify my dependencies in the constructor function, and by clearly defining the type of paramater (taskService), Angular is able to look up the class of that type and create it for me
+
+/* To make this tasksService available in the rest of the class, I need to store it in a property such as => private tasksService: TasksService
+
+I can either specify it like this:
+
+  constructor(tasksService: TasksService){
+    this.tasksService = tasksService;
   }
+
+*/
+
+// * Or I can use shortcut offered by typescript
+
+  constructor(private tasksService: TasksService){}
+  
+  get selectedUserTask() {
+
+    return this.tasksService.getUserTasks(this.userId)
+
+  } 
 
 
 
 
   onCompleteTask(id: string){
     
-    this.tasks = this.tasks.filter((task) => task.id !== id);
+      //* Function code moved to tasks.service.ts
+
 
   }
 
@@ -94,15 +134,7 @@ export class TasksComponent {
   //* Remember that task that will be added to tasks array needs to have the same shape
   onAddTask(taskData: NewTaskData){
 
-    this.tasks.push({
-      
-      id: new Date().getTime().toString(),  // I need to create new id for each task
-      userId: this.userId,                  // As the task is added to the current user user id is from this user
-      title: taskData.title,
-      summary: taskData.summary,
-      
-      dueDate: taskData.date,
-    })
+  //* Function code moved to tasks.service.ts
 
     this.isAddingTask = false;
 
