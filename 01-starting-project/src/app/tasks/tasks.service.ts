@@ -48,6 +48,7 @@ export class TasksService {
         return this.tasks.filter((task) => task.userId === userId);
       }
 
+      
       addTask(taskData: NewTaskData, userId:string) {
 
         this.tasks.push({
@@ -55,8 +56,7 @@ export class TasksService {
             id: new Date().getTime().toString(),  // I need to create new id for each task
             userId: userId,                  // As the task is added to the current user user id is from this user
             title: taskData.title,
-            summary: taskData.summary,
-            
+            summary: taskData.summary, 
             dueDate: taskData.date,
           })
       }

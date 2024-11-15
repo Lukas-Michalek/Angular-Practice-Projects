@@ -121,7 +121,7 @@ I can either specify it like this:
 
   //H -> Jump to new-task.component.html responsible for rendering new-task
 
-  onCancelAddTask(){
+  onCloseAddTask(){
     this.isAddingTask = false;
   }
 
@@ -131,15 +131,15 @@ I can either specify it like this:
 
   // taskData we receive in this method are of the shape NewTaskData specified in task.model.ts so I cna use this data type
   
-  //* Remember that task that will be added to tasks array needs to have the same shape
-  onAddTask(taskData: NewTaskData){
+  //* Remember that task that will be added to tasks array needs to have the same shape and as It is being triggered from new-task componenet via Services I no longer need it here
+  // onAddTask(taskData: NewTaskData){
 
   //* Function code moved to tasks.service.ts
 
-    this.isAddingTask = false;
+  //   this.isAddingTask = false;
 
 
-  }
+  // }
 
 
 

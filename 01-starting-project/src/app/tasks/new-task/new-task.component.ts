@@ -1,7 +1,8 @@
-import { Component, EventEmitter,Output, signal } from '@angular/core';
+import { Component, EventEmitter,Output, signal, inject, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { type NewTaskData } from '../task/task.model';
+import { TasksService } from '../tasks.service';
 
 @Component({
   selector: 'app-new-task',
@@ -12,9 +13,22 @@ import { type NewTaskData } from '../task/task.model';
 })
 export class NewTaskComponent {
 
+  // H *** Alternate Dependency Injection 2 *** //
+
+  // As I am using services and not onAddTask function in tasks.component.ts, I need to Input userID from the parrent component that is tasks.component.ts. User ID is being emited from user.component.ts to app.component.ts and because new-task.component is the children of app.component, it can access user.id through @Input
+
+  @Input({ required: true}) userId!: string;
+
+
+
+
   // User clicks on backdrop or Cancel button, event is being emitted that will send no data -> VOID
 
-  @Output() cancel = new EventEmitter<void>();
+  //   @Output() cancel = new EventEmitter<void>();
+
+  // h *** Alternative Dependency Injection Mechanism ***
+  //* As I still want that the new task dialogue gets closed whenever I submit the for, I still wnat to use this Event emitter - I just need to rename it to get a more universal name
+  @Output() close = new EventEmitter<void>();
 
   // I will be submitting data to the parent component (tasks.component.ts) that manages all tasks -> I want to add task to this array and thus I need to emit or pass these data in the form of object to tis parent.
 
@@ -26,7 +40,10 @@ export class NewTaskComponent {
   //   date: string;
   // } >
   
-  @Output() add = new EventEmitter<NewTaskData>(); 
+  // H *** Alternative Dependency Injection Mechanism ***
+  // As I no longer needs to emit add event emitter to its parent - tasks.component, I not longer needs (add) event emitter
+  
+  // @Output() add = new EventEmitter<NewTaskData>(); 
   
    
   // * To use 2 ways binding (so I can get input value from title, summary and date) I will start by adding a property for each with empty initial value
@@ -52,7 +69,7 @@ export class NewTaskComponent {
 
   onCancel(){
 
-    this.cancel.emit();
+    this.close.emit();
 
   }
 
@@ -62,15 +79,44 @@ export class NewTaskComponent {
 
   // * As I want to create new task, capture all input from user, and then save it in tasks array stored in tasks.component.ts, I need to emit these data from this component (new-task.ts) to its parent - tasks.component.ts 
 
+
+  // H *****     Alternative Dependency Injection Mechanism     *****
+
+  // In order to demostrate another use of Alternative Dependency Injection Mechanism, I am going to update onSubmit Method making use of services from tasks.services.ts => class TasksService
+
+  //* In this approach I instead of using constructor I can initialize to a value that is created with help of the inject function (that needs to be imported from '@angular/core')
+
+  // inject function injects a dependancy and provides it as a value for property tasksService
+
+  // * So I do not instantiate class TasksService in a construnctor but rather use it as an injection token that is passed to an inject function
+
+  private tasksService = inject(TasksService)
+  
   
   onSubmit () {
-    this.add.emit({     
+    this.tasksService.addTask({
       title: this.enteredTitle,
       summary: this.enteredSummary,
-      date: this.enteredDate,
-     
-    })
+      date: this.enteredDate 
+    }, 
+      this.userId
+    );
+
+    this.close.emit();
   }
+  
+
+
+
+  // * Old version not using Services
+  // onSubmit () {
+  //   this.add.emit({     
+  //     title: this.enteredTitle,
+  //     summary: this.enteredSummary,
+  //     date: this.enteredDate,
+     
+  //   })
+  // }
 
 
 }
