@@ -63,6 +63,8 @@ export class TasksService {
 
       removeTask(id: string){
 
+        console.log(`Task id received in removeTask => ` + id)
+
         this.tasks = this.tasks.filter((task) => task.id !== id);
       }
 

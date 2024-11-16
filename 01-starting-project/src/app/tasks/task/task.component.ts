@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, inject } from '@angular/core';
 
 
 import { type Task } from './task.model'
@@ -8,16 +8,7 @@ import { CardComponent } from '../../shared/card/card.component'
 // To be able to use the PIPES I need to import the exact pipe
 import { DatePipe } from '@angular/common';
 
-// interface Task {
-
-//   id: string,
-//   userId: string,
-//   title: string,
-//   summary: string,
-//   dueDate:string
-// }
-
-//* Same as I did with user, It is good practice to 'outsource' Task model as well.
+import { TasksService } from '../tasks.service';
 
 
 @Component({
@@ -30,14 +21,23 @@ import { DatePipe } from '@angular/common';
 export class TaskComponent {
 
   @Input({required: true}) task!: Task; 
-  @Output() complete = new EventEmitter<string>();
+  
+  // H *** Removing Tasks - Complete ***
+  // * I no longer need to emit task.id to the tasks.component as removing the task is handled in tasks.services intead. So the only thing I need is to inject TaskService method from tasks.serices to tasksService proerty which now holds access to all the methods and 'task database' in the form of tasks array and so all logic will be done there.
+
+  // * Remember to also delete emitter from tasks.component
+  // @Output() complete = new EventEmitter<string>();
+
+  private tasksService = inject(TasksService);
 
 
 
   onCompleteTask(){
-    this.complete.emit(this.task.id);
+    // this.complete.emit(this.task.id);
+    console.log(`Complete Button Clicked`)
+
+    console.log(`this.task.id is => ` + this.task.id)
+    this.tasksService.removeTask(this.task.id);
+    
   }
-
-
-
 }

@@ -100,13 +100,9 @@ I can either specify it like this:
 
 
 
-
-  onCompleteTask(id: string){
-    
-      //* Function code moved to tasks.service.ts
-
-
-  }
+  //* Function code moved to tasks.service.ts as I am using dependency injection instead
+  // onCompleteTask(id: string){   
+  // }
 
 
   //* When the button is clicked (we start the process by conditionally showing a component that will allow as to enter the task details) add task - [Name is describing the action very well] 

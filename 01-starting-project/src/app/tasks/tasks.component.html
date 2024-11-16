@@ -32,8 +32,11 @@
     <ul> 
        @for (task of selectedUserTask; track task.id){ 
            <li>
-               <app-task (complete)="onCompleteTask($event)" [task]="task"/>
-           </li>
+               <!--* As I no longer emits task.id to tasks.component I no longer needs this emiter (complete)="onCompleteTask($event)"-->
+            <!-- <app-task (complete)="onCompleteTask($event)" [task]="task"/> -->
+               <app-task [task]="task"/>
+
+            </li>
        } 
     </ul> 
 </section>
