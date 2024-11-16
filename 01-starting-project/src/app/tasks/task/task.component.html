@@ -1,13 +1,11 @@
 <app-card>
-    <article>
-        <h2>{{ task.title }}</h2>
-        
-        <!-- To output date in a better way I can use Pipes -->
-         <!-- * Every Pipe needs to be imported to the component and I can find different options for each pipe in Angular Documentation -->
-        <time>{{ task.dueDate | date: 'medium' }}</time>
-        <p>{{ task.summary  }}</p>
-        <p class="actions">
-            <button (click)="onCompleteTask()">Complete</button>
-        </p>
-    </article>
+  <article>
+    <h2>{{ task.title }}</h2>
+
+    <time>{{ task.dueDate | date : "medium" }}</time>
+    <p>{{ task.summary }}</p>
+    <p class="actions">
+      <button (click)="onCompleteTask()">Complete</button>
+    </p>
+  </article>
 </app-card>

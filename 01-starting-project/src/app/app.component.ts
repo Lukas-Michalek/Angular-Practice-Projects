@@ -4,7 +4,6 @@ import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 import { TasksComponent } from './tasks/tasks.component';
 
-// ! Import dummy users to app.component so it cen be set from outside of user component and from app component itself
 import { DUMMY_USERS } from './dummy-users';
 
 @Component({

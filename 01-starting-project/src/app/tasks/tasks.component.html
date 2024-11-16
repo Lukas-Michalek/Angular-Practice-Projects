@@ -1,45 +1,23 @@
-<!-- I want to use the newly added property isAddingTask to conditionaly show the new-task component -->
-
-<!-- * isAddingTask is listening for an event, when this event triggers and although no data is passed, the function  onCancelAddTask() will turn isAddingTask to FALSE, condition is therefore no longer being met and DOM removes the component <app-new-task> -->
-
-<!-- In order to add new task I need to listen to do (add) event that I created in new-task.component.ts, that will trigger onAddTask method in tasks.component.ts -->
-
-<!-- H Alternative Dependency Injection Mechanism -->
- <!-- As I am now using services straight from new-task.component I need to add input for UserId property that is availiable in tasks.component as it is children of app.component and app.component has access to this property as it was emitted from its another children user.component -->
-
- @if(isAddingTask){
-    <app-new-task [userId]="userId" (close)=" onCloseAddTask()" />
+@if(isAddingTask){
+<app-new-task [userId]="userId" (close)="onCloseAddTask()" />
 }
 
-
 <section id="tasks">
-    <header>
+  <header>
+    <h2>{{ userName }}'s Tasks</h2>
 
-        <h2>{{ userName }}'s Tasks</h2>
-        
-        <menu>
+    <menu>
+      <button (click)="onStartAddTask()">Add Task</button>
+    </menu>
+  </header>
 
-            <!-- When user clicks button 'Add Task' onStartAddTask () turns isAddingTask property that was initially false to true which in turn satisfy @if(isAddingTask) and new-task component is being rendered-->
-            <button (click)="onStartAddTask ()">Add Task</button>
-            
-        </menu>
-
-        
-    </header>
-
-
-
-    <ul> 
-       @for (task of selectedUserTask; track task.id){ 
-           <li>
-               <!--* As I no longer emits task.id to tasks.component I no longer needs this emiter (complete)="onCompleteTask($event)"-->
-            <!-- <app-task (complete)="onCompleteTask($event)" [task]="task"/> -->
-               <app-task [task]="task"/>
-
-            </li>
-       } 
-    </ul> 
+  <ul>
+    @for (task of selectedUserTask; track task.id){
+    <li>
+      <app-task [task]="task" />
+    </li>
+    }
+  </ul>
 </section>
-
 
 <p>{{ userName }}</p>
