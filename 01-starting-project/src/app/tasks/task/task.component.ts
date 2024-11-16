@@ -34,9 +34,6 @@ export class TaskComponent {
 
   onCompleteTask(){
     // this.complete.emit(this.task.id);
-    console.log(`Complete Button Clicked`)
-
-    console.log(`this.task.id is => ` + this.task.id)
     this.tasksService.removeTask(this.task.id);
     
   }

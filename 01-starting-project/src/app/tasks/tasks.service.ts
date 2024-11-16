@@ -42,6 +42,29 @@ export class TasksService {
         }
       ];
 
+  //H *****     USE localStorage for Data Storage    ***** //
+
+  // Constructor is the function that is automatically excecuted when the app starts
+
+  // * const tasks = localStorage.getItem('tasks') => reach out to localStorage, get specified data from that storage nad save them in tasks variable
+  
+  constructor() {
+    const tasks = localStorage.getItem('tasks')
+    
+    // If there are some data stored already (not the case for when the code is run for the first time)
+    //* If there are some tasks stored I want to override the tasks generated with the app by the tasks stored there
+    // ! Note that I can`t store complex data structures (such as Objects) in localStorage and therefore I need to transform tasks array into string. For that I use JSON format = So the tasks are stored in JSON format as a storng
+    //* To transform them back into array I use JSON.parse() method
+    
+    // If no tasks are found I keep these Dummy Tasks Data, however if there are some tasks in localStorage already I use those.
+   
+    if(tasks){
+
+      this.tasks = JSON.parse(tasks);
+
+    }
+  }
+
     // Expects to get a userID of type string as an input, and which should then return all the tasks that belong to taht user with that ID
       getUserTasks(userId: string){
 
@@ -59,13 +82,21 @@ export class TasksService {
             summary: taskData.summary, 
             dueDate: taskData.date,
           })
-      }
+          this.saveTasks();
+        }
 
       removeTask(id: string){
 
-        console.log(`Task id received in removeTask => ` + id)
 
         this.tasks = this.tasks.filter((task) => task.id !== id);
+        this.saveTasks();
+      }
+
+      
+      // Whenever is this method called it replace that tasks that are already stored in the localStorage with acutal copy of tasks, that will either have one more or one less task that the tasks array currently in tasks array in JSON format on localStorage
+      private saveTasks() {
+
+        localStorage.setItem('tasks', JSON.stringify(this.tasks))
       }
 
 }
