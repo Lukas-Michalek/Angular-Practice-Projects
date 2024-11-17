@@ -1,15 +1,23 @@
 import { Component } from '@angular/core';
 
-import { HeaderComponent } from './header/header.component';
-import { UserComponent } from './user/user.component';
-import { TasksComponent } from './tasks/tasks.component';
+
+// No longer need for the component that is not standalone
+// import { HeaderComponent } from './header/header.component';
+// import { UserComponent } from './user/user.component';
+// import { TasksComponent } from './tasks/tasks.component';
 
 import { DUMMY_USERS } from './dummy-users';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [HeaderComponent, UserComponent, TasksComponent],
+  
+  
+  standalone: false, // In order to use this component in module standalone must be set to false!
+  
+  //* As this component is not standalone anymore, imports needs to be removed as well as 'imports' is only valid on a component that is standalone.(-992010)
+  // imports: [HeaderComponent, UserComponent, TasksComponent],
+  
+  
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
