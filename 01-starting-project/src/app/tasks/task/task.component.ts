@@ -2,17 +2,20 @@ import { Component, Input, EventEmitter, Output, inject } from '@angular/core';
 
 import { type Task } from './task.model';
 
-import { CardComponent } from '../../shared/card/card.component';
+// import { CardComponent } from '../../shared/card/card.component';
 
 // To be able to use the PIPES I need to import the exact pipe
-import { DatePipe } from '@angular/common';
+// import { DatePipe } from '@angular/common';
 
 import { TasksService } from '../tasks.service';
 
 @Component({
   selector: 'app-task',
-  standalone: true,
-  imports: [CardComponent, DatePipe],
+  // standalone: true,
+  // imports: [CardComponent, DatePipe],
+
+  // Same process as before. Note that DatePipe is already included in browser module
+  standalone: false,
   templateUrl: './task.component.html',
   styleUrl: './task.component.css',
 })

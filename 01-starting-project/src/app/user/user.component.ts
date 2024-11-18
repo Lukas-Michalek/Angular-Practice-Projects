@@ -1,12 +1,18 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 import { type User } from './user.model';
-import { CardComponent } from "../shared/card/card.component";
+
+// import { CardComponent } from "../shared/card/card.component";
 
 @Component({
   selector: 'app-user',
-  standalone: true,
-  imports: [CardComponent],
+
+  // standalone: true,
+  standalone: false,
+
+  // imports: [CardComponent],
+  // * CardComponent needs to be removed from user.component and moved to declaration array as it is also now module-based
+
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
 })
