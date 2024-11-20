@@ -5,10 +5,10 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 import { TasksComponent } from './tasks/tasks.component';
-import { CardComponent } from './shared/card/card.component';
 import { TaskComponent } from './tasks/task/task.component';
 import { NewTaskComponent } from './tasks/new-task/new-task.component';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from './shared/shared.module';
 
 // @NgModule decorator (just like the most decorators) takes a configuration object where can I now configure the module -> Module are 'the things' that I use to group the Components together. So one essential configuration that must be done is to add a 'declarations array' to its configuration.
 // * Components, directives etc. that need to work together are declared and registered in declarations array
@@ -25,7 +25,6 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     HeaderComponent,
     UserComponent,
-    CardComponent,
     TasksComponent,
     TaskComponent,
     NewTaskComponent,
@@ -39,6 +38,6 @@ import { FormsModule } from '@angular/forms';
   //! The imports array is not just used for enabling standalone components but also FOR INCLUDING OTHER MODULES! Such as BrowserModule made by Angular teams containg some crutial directives and other features necessary to run Angular Modules in Browser
 
   //H **** 70. Migrating all standalone components to module-based
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, SharedModule],
 })
 export class AppModule {}
