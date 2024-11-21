@@ -21,7 +21,7 @@ import { TasksComponent } from "./tasks.component";
     
     // As app.module needs to work with TasksComponent (in app.component.html template, tasks.componenet is a part of app.component) I need to export it. However, I need to only export TasksComponenet as it is the only one from these that app.component require.
     // * I only add the Components, that are being used by other Components defined in the importing module (the app module in this case)
-    exports: [TasksComponent];
+    exports: [TasksComponent],
 
     //! Every module must work on its own! => If the module needs something, it must declare or import it itself! It can`t get it from any parent module that might be using this module
     imports: [CommonModule, FormsModule, SharedModule]
