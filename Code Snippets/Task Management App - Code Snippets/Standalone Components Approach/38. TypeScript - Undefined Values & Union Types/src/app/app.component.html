@@ -1,0 +1,88 @@
+<app-header />
+
+<main>
+  <ul id="users">
+    <!-- I need to  -->
+
+    <li>
+      <app-user
+        [id]="users[0].id"
+        [avatar]="users[0].avatar"
+        [name]="users[0].name"   
+        (select)="onSelectUser($event)"
+      
+      />
+      
+   
+    
+    </li>
+    <li>
+      <app-user
+        [id]="users[1].id"
+        [avatar]="users[1].avatar"
+        [name]="users[1].name"
+        (select)="onSelectUser($event)"
+      />
+    </li>
+    <li>
+      <app-user
+        [id]="users[2].id"
+        [avatar]="users[2].avatar"
+        [name]="users[2].name"
+        (select)="onSelectUser($event)"
+      />
+    </li>
+    <li>
+      <app-user
+        [id]="users[3].id"
+        [avatar]="users[3].avatar"
+        [name]="users[3].name"
+        (select)="onSelectUser($event)"
+        
+      />
+    </li>
+    <li>
+      <app-user
+        [id]="users[4].id"
+        [avatar]="users[4].avatar"
+        [name]="users[4].name"
+        (select)="onSelectUser($event)"
+      />
+    </li>
+  </ul>
+
+  <app-tasks
+
+
+      [userName]="selectedUser.name"
+  
+  />
+
+  <!-- *****     LESSON CONTINUES - 4     **********// -->
+   <!-- As you can see in  [userName]="selectedUser.name" if selectedUser would be undefined => -->
+
+  <!--  get selectedUser(){
+   
+    return DUMMY_USERS.find(user => user.id === this.selectedUserID)!
+  
+    } -->
+
+    <!-- I would not have '!' at the end, 'undefined' would give me a runtime error ===> undefined.name is non existant-->
+
+    <!--* I can however work around it by adding '?' ===>       -->
+    
+    <!--* [userName]="selectedUser?.name" -->
+
+    <!--* Meaning: If selectedUser is defined, access the name -->
+    <!--*          If it is not, simply use undefined as fallback value.  -->
+    <!--* So with this I access name property only if there is an object there!  -->
+
+  <!--   [userName]="selectedUser?.name" ===> is equivalent:-->
+  <!--   [userName]="selectedUser ? selectedUser.name : 'SOMETHING ELSE'" -->
+
+  <!--H continue to tasks.component.ts -->
+
+
+  <!--! Remember, that if I want to get any value from parent I always need to use GETTER!!! And if the value is to be dynamic so it can change I need to use preperty binding []-->
+
+</main>

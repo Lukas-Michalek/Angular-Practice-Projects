@@ -1,0 +1,15 @@
+<!-- Instead of just div I am using card component as a wrapper -->
+
+<!-- * Note that by default all the content (markup) of button will be replaced by the markup that is defined in coard.component.html -->
+
+<!-- In order to combine markup od card.component.html and user.component.html (lets say to use as card component as wrapper) I need to use <ng-content> element in the wrapper component. This is not build in the rowser but by Angular-->
+
+<app-card>
+  <button [class.active]="selected" (click) = "userClicked()" >
+    <img
+      [src]="imagePath"
+      [alt]="user.name"
+    />
+    <span>{{ user.name }}</span>
+  </button>
+</app-card>

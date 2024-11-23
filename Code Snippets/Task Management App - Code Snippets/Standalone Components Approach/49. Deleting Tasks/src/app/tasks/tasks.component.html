@@ -1,0 +1,25 @@
+<section id="tasks">
+    <header>
+        <h2>{{ userName }}'s Tasks</h2>
+        <menu>
+            <button>Add Task</button>
+        </menu>
+    </header>
+
+    <ul> 
+
+        
+       <!--* I am listening for any event in (complete) which then can trigger any methd   -->
+       @for (task of selectedUserTask; track task.id){ 
+           <li>
+               <app-task (complete)="onCompleteTask($event)" [task]="task"/>
+           </li>
+
+           <!--* ($event) is a special variable that`s made available by Angular that gives me access to the event data that was emitted -->
+
+       } 
+    </ul> 
+</section>
+
+
+<p>{{ userName }}</p>

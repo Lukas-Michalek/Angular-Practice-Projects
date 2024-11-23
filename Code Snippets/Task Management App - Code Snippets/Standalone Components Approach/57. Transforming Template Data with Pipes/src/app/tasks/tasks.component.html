@@ -1,0 +1,38 @@
+<!-- I want to use the newly added property isAddingTask to conditionaly show the new-task component -->
+
+<!-- * isAddingTask is listening for an event, when this event triggers and although no data is passed, the function  onCancelAddTask() will turn isAddingTask to FALSE, condition is therefore no longer being met and DOM removes the component <app-new-task> -->
+
+<!-- In order to add new task I need to listen to do (add) event that I created in new-task.component.ts, that will trigger onAddTask method in tasks.component.ts -->
+@if(isAddingTask){
+    <app-new-task (cancel)=" onCancelAddTask()" (add)="onAddTask($event)"/>
+}
+
+
+<section id="tasks">
+    <header>
+
+        <h2>{{ userName }}'s Tasks</h2>
+        
+        <menu>
+
+            <!-- When user clicks button 'Add Task' onStartAddTask () turns isAddingTask property that was initially false to true which in turn satisfy @if(isAddingTask) and new-task component is being rendered-->
+            <button (click)="onStartAddTask ()">Add Task</button>
+            
+        </menu>
+
+        
+    </header>
+
+
+
+    <ul> 
+       @for (task of selectedUserTask; track task.id){ 
+           <li>
+               <app-task (complete)="onCompleteTask($event)" [task]="task"/>
+           </li>
+       } 
+    </ul> 
+</section>
+
+
+<p>{{ userName }}</p>

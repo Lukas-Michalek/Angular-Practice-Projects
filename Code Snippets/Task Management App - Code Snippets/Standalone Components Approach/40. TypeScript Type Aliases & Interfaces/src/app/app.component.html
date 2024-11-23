@@ -1,0 +1,30 @@
+<app-header />
+
+<main>
+  <ul id="users">
+    <!-- By using Type Object I need to adjust my code accordingly -->
+    <!--   [id]="users[0].id"
+            [avatar]="users[0].avatar"
+            [name]="users[0].name"  -->
+
+    <!-- Becomes: this  [user]="users[0]"-->
+
+    <li>
+      <app-user [user]="users[0]" (select)="onSelectUser($event)" />
+    </li>
+    <li>
+      <app-user [user]="users[1]" (select)="onSelectUser($event)" />
+    </li>
+    <li>
+      <app-user [user]="users[2]" (select)="onSelectUser($event)" />
+    </li>
+    <li>
+      <app-user [user]="users[3]" (select)="onSelectUser($event)" />
+    </li>
+    <li>
+      <app-user [user]="users[4]" (select)="onSelectUser($event)" />
+    </li>
+  </ul>
+
+  <app-tasks [userName]="selectedUser.name" />
+</main>

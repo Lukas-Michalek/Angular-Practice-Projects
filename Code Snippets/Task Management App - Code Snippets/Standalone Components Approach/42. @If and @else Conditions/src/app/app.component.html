@@ -1,0 +1,46 @@
+<app-header />
+
+<main>
+  
+  <!-- Dynamicaly Rendering lists -->
+
+  <ul id="users">
+
+    
+    <!-- For every user object (name can be changed, for example for ( u of users)) in users list, pass that user values (id, name, avater) through variable binding to user.component.ts =>  @Input({required: true}) user!: User; (User is alias/interface to user object {id, name, avatar})-->
+
+    <!--* track user.id  -->
+    <!--* As we are dynamically outputing list data here and Angular internally wants to keep the track of every item that is being rendered, so that if the list input data would change (id we would shuffle the list items around or remove some items) Angular could easily reuse all already rendered list items and does not have to recreate the whole list every time the list data changes  -->
+    <!-- * With this track expression we are teling Angular which unique identification criteria can be assigned by angular automatically behind the scenes to every list item ===> In this case user.id is unique identifier-->
+     <!-- Angula basically connect the user.id to every list item <li> it outputs, so that every list item has different ID, and that then helps the Angular update the list if the data would change -->
+    
+    @for ( user of users; track user.id) {
+
+      <li>
+        <app-user [user]="user" (select)="onSelectUser($event)" />
+      </li>
+
+    }
+
+
+  </ul>
+
+  <!--*****     Lesson Continues 1     ***** -->
+
+  <!-- There migt be a case when I do not always want to render and element ==> Coniditional Rendering ==> Otherwise it would be always rendered, and it would not just contain any content. And thats where @if comes in-->
+
+  <!--* If selected user is defined(exists) -->
+
+  @if (selectedUser)  {
+    
+    <!-- <app-tasks [userName]="selectedUser ? selectedUser.name : ''" /> -->
+
+    <app-tasks [userName]="selectedUser.name" />
+    
+  } @else {
+
+    <p>Select User!</p>
+
+  }
+
+</main>

@@ -1,0 +1,24 @@
+<section id="tasks">
+    <header>
+        <h2>{{ userName }}'s Tasks</h2>
+        <menu>
+            <button>Add Task</button>
+        </menu>
+    </header>
+
+    <ul>
+        <!-- Go through all the tasks in tasks.componenet.ts -->
+       <!-- @for (task of tasks; track task.id) -->
+       
+       <!-- Go through selectedUserTask array that I got from filter method in tasks.component.ts and therefore use only filtered subarray of tasks, containing only tasks based on userID-->
+       @for (task of selectedUserTask; track task.id){ 
+           <li>
+               <app-task />
+           </li>
+
+       }
+    </ul>
+</section>
+
+
+<p>{{ userName }}</p>

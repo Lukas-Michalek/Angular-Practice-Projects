@@ -1,0 +1,11 @@
+<!-- As I am now using signals as inputs I must also execute "name" and "imagePath" as a funtion  -->
+
+<div>
+  <button (click) = "userClicked()" >
+    <img
+      [src]="imagePath"
+      [alt]="user.name"
+    />
+    <span>{{ user.name }}</span>
+  </button>
+</div>
