@@ -1,0 +1,15 @@
+// https://stackoverflow.com/questions/43684599/the-attribute-name-of-ngif-must-be-in-lowercase
+
+
+{
+    "tagname-lowercase": false,
+    "attr-lowercase": false,
+    "attr-value-double-quotes": true,
+    "doctype-first": false,
+    "tag-pair": true,
+    "spec-char-escape": true,
+    "id-unique": true,
+    "src-not-empty": true,
+    "attr-no-duplication": true,
+    "title-require": true
+}
