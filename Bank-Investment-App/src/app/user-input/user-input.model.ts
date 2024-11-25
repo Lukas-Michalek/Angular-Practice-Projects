@@ -16,3 +16,5 @@ export interface RecordDataType {
     totalAmountInvested: number,
 
 }
+
+

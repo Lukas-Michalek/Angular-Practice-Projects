@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Output} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { UserInputData } from './user-input.model';
+import { type   UserInputData } from './user-input.model';
+import { type RecordDataType } from './user-input.model';
 
 
 @Component({
@@ -13,54 +14,23 @@ import { UserInputData } from './user-input.model';
 })
 export class UserInputComponent {
 
-  initialInvestment='';
-  duration='';
-  annualInvestment='';
-  expectedReturn='';
+  enteredInitialInvestment='';
+  enteredDuration='';
+  enteredAnnualInvestment='';
+  enteredExpectedReturn='';
 
-
-  @Output() addInvestmentRecord = new EventEmitter<UserInputData>();
-
-  // onSubmit() {
-  //   const annualData = [];
-  //   let initialInvestment = Number(this.initialInvestment)
-  //   let investmentValue = Number(this.initialInvestment);
-  //   let duration = Number(this.duration)
-  //   let annualInvestment = Number(this.annualInvestment)
-  //   let expectedReturn = Number(this.expectedReturn)
   
-  //   for (let i = 0; i < duration; i++) {
-  //     const year = i + 1;
-  //     const interestEarnedInYear = investmentValue * (expectedReturn / 100);
-  //     investmentValue += interestEarnedInYear + annualInvestment;
-      
-  //     const totalInterest =
-  //       investmentValue - annualInvestment * year - initialInvestment;
-      
-  //       annualData.push({
-  //       year: year,
-  //       interest: interestEarnedInYear,
-  //       valueEndOfYear: investmentValue,
-  //       annualInvestment: annualInvestment,
-  //       totalInterest: totalInterest,
-  //       totalAmountInvested: initialInvestment + annualInvestment * year,
-  //     });
-  //   }
-  
-  //   console.log(annualData);
-  // }
 
-  onSubmit(){
-    this.addInvestmentRecord.emit({
+  onSubmit() {
 
-      initialInvestment: this.initialInvestment,
-      duration: this.duration,
-      annualInvestment: this.duration,
-      expectedReturn: this.duration,
-
-    })
-
+    console.log('FORM Submitted!');
+    console.log(this.enteredExpectedReturn);
+    console.log(this.enteredAnnualInvestment)
+    console.log(this.enteredDuration)
+    console.log(this.enteredInitialInvestment)
+   
   }
+
   
   }
 
