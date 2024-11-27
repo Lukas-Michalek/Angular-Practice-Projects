@@ -1,6 +1,8 @@
 <app-header />
 
-<app-user-input />
+<!--* user-input component is emitting data inputted by user through Event Emitter calculate to the app component where all the calculation are going to take place. The data are being passed as argument to onCalculateInvestmentResults() function in the form of $event-->
+
+<app-user-input (calculate)="onCalculateInvestmentResults($event)" />
 
   
 <app-investment-results />

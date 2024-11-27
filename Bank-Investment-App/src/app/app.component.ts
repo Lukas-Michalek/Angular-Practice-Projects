@@ -20,7 +20,9 @@ export class AppComponent {
 
   //* Note the that each parameter needs to have proeprty type and the function needs to recive its argument in this shape! 
   
-  calculateInvestmentResults(data: {
+  // onCalculateInvestmentResults receives data imputted by user from user-input component in this exact form with these exact property types! These are then DESTRUCTURED later in the function to be used in the claculation, and the result is being printed in the console to see if data are correct.
+ 
+  onCalculateInvestmentResults(data: {
 
     initialInvestment: number;
     duration: number;
@@ -54,10 +56,10 @@ export class AppComponent {
       });
     }
   
-    return annualData;
+    console.log(annualData);
   }
 
   
-
+}
 
 
