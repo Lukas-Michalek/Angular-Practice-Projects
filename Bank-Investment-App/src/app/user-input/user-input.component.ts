@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Output} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { type   UserInputData } from './user-input.model';
-import { type RecordDataType } from './user-input.model';
+import type { InvestmentInput } from '../investment-input.model';
 
 
 @Component({
@@ -17,13 +16,7 @@ export class UserInputComponent {
   //* To pass that user input data captured in two way binding to the parent component where all the calculation (for this version) are going to take place, I need to emit it them by using EvenEmitter with the exact shape and the exact types of variables (string, number, ...) of the properties the emitter will emit.
 
   
-  @Output() calculate = new EventEmitter<{
-
-    initialInvestment: number;
-    duration: number;
-    annualInvestment: number;
-    expectedReturn: number;
-  }>();
+  @Output() calculate = new EventEmitter<InvestmentInput>();
   
   enteredInitialInvestment='';
   enteredDuration='';

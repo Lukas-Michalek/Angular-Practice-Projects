@@ -3,10 +3,7 @@ import { HeaderComponent } from './header/header.component';
 import { InvestmentResultsComponent } from './investment-results/investment-results.component';
 import { UserInputComponent } from './user-input/user-input.component';
 
-import { type UserInputData } from './user-input/user-input.model';
-
-import { type RecordDataType } from './user-input/user-input.model'
-
+import type { InvestmentInput } from './investment-input.model';
 
 @Component({
   selector: 'app-root',
@@ -22,13 +19,7 @@ export class AppComponent {
   
   // onCalculateInvestmentResults receives data imputted by user from user-input component in this exact form with these exact property types! These are then DESTRUCTURED later in the function to be used in the claculation, and the result is being printed in the console to see if data are correct.
  
-  onCalculateInvestmentResults(data: {
-
-    initialInvestment: number;
-    duration: number;
-    annualInvestment: number;
-    expectedReturn: number;
-})   
+  onCalculateInvestmentResults(data: InvestmentInput )   
   {
 
     //!!! To unpack the data I am using JavaScript DESTRUCTURING
