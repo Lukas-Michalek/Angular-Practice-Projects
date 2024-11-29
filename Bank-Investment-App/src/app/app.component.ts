@@ -13,6 +13,22 @@ import type { InvestmentInput } from './investment-input.model';
 })
 export class AppComponent {
 
+  //* Remember that in order to use the annualData (result of the onCalculateInvestmentResults function) I need to declare property tht will belong to app component, this property will then 'be replaced' with the result of function and could be then used by the children (investment-results component) to be used to populate the table
+
+  // As before '?' tells TypeScript that 'resultData' may hold value but may be also undefined and that is fine
+
+  resultData?: {
+    year: number,
+    interest: number,
+    valueEndOfYear: number,
+    annualInvestment: number,
+    totalInterest: number,
+    totalAmountInvested: number,
+  } [];
+  
+  
+  
+  
   //H Calculating Investment Data -> In Component Aproach
 
   //* Note the that each parameter needs to have proeprty type and the function needs to recive its argument in this shape! 
@@ -47,7 +63,11 @@ export class AppComponent {
       });
     }
   
-    console.log(annualData);
+   
+    //* In order to use anualData from this function, I need to store it in a property of app component!
+    
+    this.resultData = annualData;
+    
   }
 
   
