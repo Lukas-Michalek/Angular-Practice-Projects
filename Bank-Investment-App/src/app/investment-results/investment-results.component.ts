@@ -1,9 +1,12 @@
 import { Component, Input, input } from '@angular/core';
 
+//  In order to use currency pipe it needs to be imported from @angular/common and then added to imports arra o the component where it will be used
+import { CurrencyPipe } from '@angular/common'
+
 @Component({
   selector: 'app-investment-results',
   standalone: true,
-  imports: [],
+  imports: [ CurrencyPipe ],
   templateUrl: './investment-results.component.html',
   styleUrl: './investment-results.component.css'
 })
