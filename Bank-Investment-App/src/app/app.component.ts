@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { InvestmentResultsComponent } from './investment-results/investment-results.component';
 import { UserInputComponent } from './user-input/user-input.component';
@@ -13,18 +13,40 @@ import type { InvestmentInput } from './investment-input.model';
 })
 export class AppComponent {
 
-  //* Remember that in order to use the annualData (result of the onCalculateInvestmentResults function) I need to declare property tht will belong to app component, this property will then 'be replaced' with the result of function and could be then used by the children (investment-results component) to be used to populate the table
+  //* Remember that in order to use the annualData (result of the onCalculateInvestmentResults function) I need to declare property that will belong to app component, this property will then 'be replaced' with the result of function and could be then used by the children (investment-results component) to be used to populate the table
 
-  // As before '?' tells TypeScript that 'resultData' may hold value but may be also undefined and that is fine
+// H ------------------------- USING SIGNALS -----------------------------------------
 
-  resultData?: {
+  //* When using signals, property initilization is slightly different
+
+  // Change-Detection:
+  
+  // resultData?: {
+  //   year: number,
+  //   interest: number,
+  //   valueEndOfYear: number,
+  //   annualInvestment: number,
+  //   totalInterest: number,
+  //   totalAmountInvested: number,
+  // } [];
+
+  // * Signals:
+  // Property needs and initial value, that could be initially undefined, but at the end I want to store there different value
+
+  /*  Syntax: property = signal<{ Datatype [] | undefined }>(undefined);
+      is in TypeScript the way to define two possible types for the given value (not that this is the xact syntax for an array)
+
+      * With this I am telling the angular that this signal (resultsData) will hold an array full of objects that has the shape specified or an undefined value
+  */ 
+  
+  resultData = signal<{
     year: number,
     interest: number,
     valueEndOfYear: number,
     annualInvestment: number,
     totalInterest: number,
     totalAmountInvested: number,
-  } [];
+  } [] | undefined >(undefined);
   
   
   
@@ -65,8 +87,12 @@ export class AppComponent {
   
    
     //* In order to use anualData from this function, I need to store it in a property of app component!
-    
-    this.resultData = annualData;
+
+    // As I am using signals now (resultData is now signal), this syntax is no longer valid and I need to use a special set method
+    // this.resultData = annualData;
+
+    this.resultData.set(annualData)
+
     
   }
 

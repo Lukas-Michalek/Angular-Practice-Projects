@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output} from '@angular/core';
+import { Component, signal, output} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import type { InvestmentInput } from '../investment-input.model';
@@ -15,14 +15,24 @@ export class UserInputComponent {
 
   //* To pass that user input data captured in two way binding to the parent component where all the calculation (for this version) are going to take place, I need to emit it them by using EvenEmitter with the exact shape and the exact types of variables (string, number, ...) of the properties the emitter will emit.
 
-  
-  @Output() calculate = new EventEmitter<InvestmentInput>();
-  
-  enteredInitialInvestment='';
-  enteredDuration='';
-  enteredAnnualInvestment='';
-  enteredExpectedReturn='';
+  // Using Change Detection Mechanism
+  // @Output() calculate = new EventEmitter<InvestmentInput>();
 
+  // enteredInitialInvestment='';
+  // enteredDuration='';
+  // enteredAnnualInvestment='';
+  // enteredExpectedReturn='';
+
+
+  //* Using Signals
+  //! Note that I do not need to specify the type the signal property will hold (such as enteredInitialInvestment = signal<string>('')) because signal will immediatly recognize the type of value and infern it from that initial value
+  
+  calculate = output<InvestmentInput>();
+  
+  enteredInitialInvestment = signal('');
+  enteredDuration = signal('');
+  enteredAnnualInvestment = signal('');
+  enteredExpectedReturn = signal('');
   
 
   //* The important thing to notice here is that every input from user will always be in the form of String. However, for calculations I need the type of Number.
@@ -35,13 +45,26 @@ export class UserInputComponent {
 
   this.calculate.emit({
     
+      // When using Change Detection Mechanism
+      // initialInvestment: +this.enteredInitialInvestment,
+      // duration: +this.enteredDuration,
+      // annualInvestment: +this.enteredAnnualInvestment,
+      // expectedReturn: +this.enteredExpectedReturn,
 
-      initialInvestment: +this.enteredInitialInvestment,
-      duration: +this.enteredDuration,
-      annualInvestment: +this.enteredAnnualInvestment,
-      expectedReturn: +this.enteredExpectedReturn,
+      //! When using signals I want to emit the data stored in signals NOT signals themselves!!!
+      // * By adding () I am reading the data freom signal!
+      initialInvestment: +this.enteredInitialInvestment(),
+      duration: +this.enteredDuration(),
+      annualInvestment: +this.enteredAnnualInvestment(),
+      expectedReturn: +this.enteredExpectedReturn(),
   
-  })
+  });
+
+  // Resetting form after submit:
+  this.enteredInitialInvestment.set('');
+  this.enteredDuration.set('');
+  this.enteredAnnualInvestment.set('');
+  this.enteredExpectedReturn.set('');
    
   }
 

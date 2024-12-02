@@ -4,8 +4,13 @@
 
 <app-user-input (calculate)="onCalculateInvestmentResults($event)" />
 
-  
-<app-investment-results [results]="resultData" />
+
+<!-- This is by using Change Detection -->
+<!-- <app-investment-results [results]="resultData" /> -->
+
+<!--* When using signals, results does not want the signal, but the data inside the signal! So I need to read the signal data and let Angular set up a subscription behind the scenes by adding brackets-->
+<app-investment-results [results]="resultData()" />
+
 
 
 

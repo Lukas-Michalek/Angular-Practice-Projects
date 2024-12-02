@@ -1,4 +1,4 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 //  In order to use currency pipe it needs to be imported from @angular/common and then added to imports arra o the component where it will be used
 import { CurrencyPipe } from '@angular/common'
@@ -16,29 +16,29 @@ export class InvestmentResultsComponent {
 
 //* 'Input' ===> Bindable property that is exposed by this component to its parent component, so that the parent component can pass data into this component
 
-// I have 2 approaces available here:
+// I have 2 approaches available here:
 
 //* First Approach using signals:
-/* results = input<{
+  results = input<{
     year: number,
     interest: number,
     valueEndOfYear: number,
     annualInvestment: number,
     totalInterest: number,
     totalAmountInvested: number,
-  } >()
-*/
+  } [] >()
 
-//* Second Approach:
 
-  @Input() results?: {
-    year: number,
-    interest: number,
-    valueEndOfYear: number,
-    annualInvestment: number,
-    totalInterest: number,
-    totalAmountInvested: number,
-  } []; 
+//* Change Detection Mechanism
+
+//   @Input() results?: {
+//     year: number,
+//     interest: number,
+//     valueEndOfYear: number,
+//     annualInvestment: number,
+//     totalInterest: number,
+//     totalAmountInvested: number,
+//   } []; 
 
   // 
   // !!!! The type of the object I am 'inputting' from the parent component (app component) needs to be a whole array of the objects (annualData) NOT a Single Object! I am sending the whole computet array here! To tell the TYpeScript that the type of results is array, full of the object of the Types above. This is the syntax I need ==>  
@@ -61,7 +61,7 @@ export class InvestmentResultsComponent {
   // '?' Optional Property (if there is a chance that no value might be received, as for example is the case now, as user might just click 'Calculate' button without adding any data and thus the property of 'results' would be 'undefined')
 
   //* The error would be ===> Property 'results' has no initializer and is not definitely assigned in the constructor.
-
+ 
 
 
 
