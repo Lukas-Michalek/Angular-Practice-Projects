@@ -1,0 +1,42 @@
+<!-- In Change Detection mechanism I need to call the values like this: -->
+ <!-- [(ngModel)]="enteredInitialInvestment" -->
+
+<!--* By using signals I no longer need to (and should not!!!) call these signals, becasue ngModel is actually already built in a way that it internally does accept signals as inputs as well, and it will automatically read them and setup subscription then-->
+<!-- [(ngModel)]="enteredInitialInvestment()" -->
+
+<form (ngSubmit)="onSubmit()">
+
+    <div  class="input-group">
+        <p>
+            <label for="initialInvestment">Initial Investment</label>
+            <input type="number" id="initialInvestment" name="initialInvestment" 
+            
+            
+            [(ngModel)]="enteredInitialInvestment">
+        </p>
+        
+        <p>
+            <label for="annualInvestment">Anual Investment</label>
+            <input type="number" id="annualInvestment" name="annualInvestment" [(ngModel)]="enteredAnnualInvestment">
+        </p>
+    </div>  
+    
+    <div  class="input-group">
+        <p>
+            <label for="expectedReturn">Expected Return</label>
+            <input type="number" id="expectedReturn" name="expectedReturn" [(ngModel)]="enteredExpectedReturn">
+        </p>
+        
+        <p>
+            <label for="duration">Duration</label>
+            <input type="number" id="duration" name="duration" [(ngModel)]="enteredDuration">
+        </p>
+    </div>
+
+
+        <button type="submit">CALCULATE</button>
+
+   
+    
+
+</form>

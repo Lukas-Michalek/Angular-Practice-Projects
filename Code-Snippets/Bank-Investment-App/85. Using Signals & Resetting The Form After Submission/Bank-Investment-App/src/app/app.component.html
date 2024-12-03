@@ -1,0 +1,17 @@
+<app-header />
+
+<!--* user-input component is emitting data inputted by user through Event Emitter calculate to the app component where all the calculation are going to take place. The data are being passed as argument to onCalculateInvestmentResults() function in the form of $event-->
+
+<app-user-input (calculate)="onCalculateInvestmentResults($event)" />
+
+
+<!-- This is by using Change Detection -->
+<!-- <app-investment-results [results]="resultData" /> -->
+
+<!--* When using signals, results does not want the signal, but the data inside the signal! So I need to read the signal data and let Angular set up a subscription behind the scenes by adding brackets-->
+<app-investment-results [results]="resultData()" />
+
+
+
+
+

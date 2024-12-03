@@ -1,0 +1,54 @@
+<!-- Firstly, I need to add "Fallback text", which means that if user fails to insert input (results are undefined), or any fields are empty, or even if he clicks submit before populating input fields this text will be shown prompting user to populate all fields -->
+
+
+<!--* Change detection mechanism => @if (!results)   -->
+
+<!-- But in signals I need to make sure to read the signal`s data!  -->
+@if (!results()){
+    <p>Please enter your values and press "Calculate"</p>
+} @else{
+    
+
+
+<!--* If user enters the value, table with all data will be shown  -->
+
+
+<table>
+    <thead>
+        <tr>
+            <td>Year</td>
+            <td>Investment Value</td>
+            <td>Interest(Year)</td>
+            <td>Total Interest</td>
+            <td>Invested Capital</td>
+        </tr>
+    </thead>
+
+<!-- I want to dynamically populate the body of the table with data from user -->
+    
+    <tbody>
+
+        <!--* If the user entered all information required and thus 'results' is defined then I want ot display each result as table row. -->
+        <!--! Remember that each result is an object in results array  -->
+        
+        <!-- When using Change Detection mechanism -->
+         <!-- @for (result of results; track result.year) -->
+        
+         <!--* However, when I am using signals and since results os now a Signal I need to execute it to read the signal value and let the Angular set up that subscription-->
+        @for (result of results(); track result.year){
+            <tr>
+                <td>{{ result.year }}</td>
+                <td>{{ result.valueEndOfYear | currency }}</td>
+                <td>{{ result.interest | currency }}</td>
+                <td>{{ result.totalInterest | currency }}</td>
+                <td>{{ result.totalAmountInvested | currency }}</td>
+            </tr>
+            
+
+        }
+
+    </tbody>
+
+</table>
+
+}
